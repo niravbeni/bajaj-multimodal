@@ -101,14 +101,18 @@ export default function PaymentSuccessPage() {
             
             {/* Success Ring Animation */}
             <motion.div
-              initial={{ scale: 1, opacity: 0.8 }}
-              animate={{ scale: 1.5, opacity: 0 }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeOut"
+              initial={{ scale: 1, opacity: 0.6 }}
+              animate={{ 
+                scale: [1, 1.4, 1],
+                opacity: [0.6, 0, 0.6]
               }}
-              className="absolute inset-0 border-4 border-green-400 rounded-full"
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                repeatDelay: 0.5
+              }}
+              className="absolute inset-0 border-3 border-green-400 rounded-full"
             />
           </div>
         </motion.div>
