@@ -70,7 +70,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex flex-col safe-area-top safe-area-bottom" style={{ backgroundColor: '#e5ddd5' }}>
+    <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#e5ddd5' }}>
       {/* WhatsApp-style Header */}
       <header className="px-4 py-3 flex items-center gap-3 safe-area-top" style={{ backgroundColor: '#075e54' }}>
         <div className="w-10 h-10 rounded-full bg-[#075e54] flex items-center justify-center">

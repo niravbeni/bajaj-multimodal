@@ -72,7 +72,7 @@ export default function VerificationPage() {
   };
 
   return (
-    <div className="h-screen overflow-hidden" style={{ backgroundColor: '#012953' }}>
+    <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
       {/* Header */}
       <header className="p-4 flex items-center safe-area-top z-20 relative">
         <Button 
@@ -194,12 +194,15 @@ export default function VerificationPage() {
                   <Input
                     key={index}
                     id={`otp-${index}`}
-                    type="text"
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     maxLength={1}
                     value={digit}
                     onChange={(e) => handleOtpChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
                     className="w-12 h-12 text-center text-lg font-bold border-2 focus:border-blue-500 bg-white"
+                    style={{ fontSize: '16px' }}
                   />
                 ))}
               </div>

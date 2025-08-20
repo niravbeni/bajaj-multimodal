@@ -38,7 +38,9 @@ export default function LoadingComparePage() {
           muted
           loop
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover"
+          style={{ backgroundColor: 'black' }}
         >
           <source src="/loader.mp4" type="video/mp4" />
         </video>

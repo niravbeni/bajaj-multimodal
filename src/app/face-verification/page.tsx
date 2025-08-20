@@ -90,7 +90,7 @@ export default function FaceVerificationPage() {
   }, [isScanning, router]);
 
   return (
-    <div className="h-screen w-full bg-black relative overflow-hidden">
+    <div className="ios-safe-height w-full bg-black relative overflow-hidden safe-area-top safe-area-bottom">
       {/* Real Camera Background */}
       <div className="absolute inset-0">
         <video 

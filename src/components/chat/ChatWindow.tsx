@@ -29,7 +29,7 @@ export default function ChatWindow({ messages, onSendMessage, disabled, isTyping
   }, [messages, isTyping, bottomSheetHeight]);
 
   return (
-    <div className="flex flex-col h-full relative" style={{ backgroundColor: '#e5ddd5' }}>
+    <div className="flex flex-col h-full relative overflow-hidden" style={{ backgroundColor: '#e5ddd5' }}>
       {/* Background Image - Mobile Only */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 md:hidden"
@@ -39,7 +39,11 @@ export default function ChatWindow({ messages, onSendMessage, disabled, isTyping
       <div 
         ref={scrollRef}
         className="flex-1 overflow-y-auto overflow-x-hidden py-4 -webkit-overflow-scrolling-touch relative z-10"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        style={{ 
+          scrollbarWidth: 'none', 
+          msOverflowStyle: 'none',
+          paddingBottom: `max(16px, env(safe-area-inset-bottom))`
+        }}
       >
         <style jsx>{`
           div::-webkit-scrollbar {
@@ -49,10 +53,10 @@ export default function ChatWindow({ messages, onSendMessage, disabled, isTyping
         {messages.map((message) => (
           <MessageBubble key={message.id} message={message} />
         ))}
-        {/* Bottom padding for better UX */}
-        <div className="h-4" />
+        {/* Extra bottom padding for iOS */}
+        <div className="h-20" />
       </div>
-      <div className="relative z-10">
+      <div className="relative z-10 safe-area-bottom bg-inherit">
         <Composer onSendMessage={onSendMessage} disabled={disabled} isTyping={isTyping} />
       </div>
     </div>

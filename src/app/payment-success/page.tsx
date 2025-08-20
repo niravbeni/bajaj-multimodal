@@ -81,7 +81,7 @@ export default function PaymentSuccessPage() {
         </div>
       )}
 
-      <div className="min-h-screen flex flex-col items-center justify-center p-6 relative">
+      <div className="ios-safe-height flex flex-col items-center justify-center p-6 relative safe-area-top safe-area-bottom overflow-y-auto">
         {/* Success Icon - Moved down */}
         <motion.div
           initial={{ scale: 0 }}

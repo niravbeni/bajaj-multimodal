@@ -101,7 +101,7 @@ export default function RankingPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#012953' }}>
+    <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
       {/* Header */}
       <header className="p-4 flex items-center safe-area-top z-20 relative">
         <Button 
