@@ -47,8 +47,7 @@ export default function LoadingComparePage() {
   if (isMobile) {
     // Mobile: Clean full-screen video only
     return (
-      <div className="screen-black h-screen w-screen overflow-hidden">
-        
+      <div className="screen-black ios-safe-height w-screen overflow-hidden safe-area-top safe-area-bottom">
         <video
           autoPlay
           muted
