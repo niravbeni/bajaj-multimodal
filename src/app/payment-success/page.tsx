@@ -92,11 +92,11 @@ export default function PaymentSuccessPage() {
             damping: 10,
             delay: 0.2
           }}
-          className="mb-6 mt-8"
+          className="mb-4 mt-12"
         >
           <div className="relative">
-            <div className="w-28 h-28 bg-green-500 rounded-full flex items-center justify-center shadow-2xl">
-              <CheckCircle className="h-14 w-14 text-white" />
+            <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center shadow-2xl">
+              <CheckCircle className="h-12 w-12 text-white" />
             </div>
             
             {/* Success Ring Animation */}
@@ -133,17 +133,17 @@ export default function PaymentSuccessPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="bg-white rounded-3xl p-4 w-full max-w-sm shadow-2xl mb-6"
+          className="bg-white rounded-3xl p-3 w-full max-w-xs shadow-2xl mb-6"
         >
-          <div className="text-center mb-4">
-            <h2 className="text-lg font-bold text-gray-900 mb-1">Transaction Details</h2>
+          <div className="text-center mb-3">
+            <h2 className="text-base font-bold text-gray-900 mb-1">Transaction Details</h2>
             <p className="text-gray-600 text-xs">Transaction ID: {transactionId}</p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {/* Product Details */}
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-              <Smartphone className="h-6 w-6 text-blue-600" />
+            <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+              <Smartphone className="h-5 w-5 text-blue-600" />
               <div className="flex-1">
                 <p className="font-semibold text-gray-900 text-sm">{currentProduct.name}</p>
                 <p className="text-gray-600 text-xs">₹50,000</p>
@@ -151,8 +151,8 @@ export default function PaymentSuccessPage() {
             </div>
 
             {/* EMI Provider */}
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-              <CreditCard className="h-6 w-6 text-green-600" />
+            <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+              <CreditCard className="h-5 w-5 text-green-600" />
               <div className="flex-1">
                 <p className="font-semibold text-gray-900 text-sm">{activeItem.provider}</p>
                 <p className="text-gray-600 text-xs">{activeItem.apr}% APR</p>
@@ -160,11 +160,11 @@ export default function PaymentSuccessPage() {
             </div>
 
             {/* EMI Amount */}
-            <div className="flex items-center gap-3 p-3 bg-green-50 rounded-xl border border-green-200">
-              <Calendar className="h-6 w-6 text-green-600" />
+            <div className="flex items-center gap-2 p-2 bg-green-50 rounded-lg border border-green-200">
+              <Calendar className="h-5 w-5 text-green-600" />
               <div className="flex-1">
                 <p className="font-semibold text-gray-900 text-sm">Monthly EMI</p>
-                <p className="text-green-600 text-base font-bold">
+                <p className="text-green-600 text-sm font-bold">
                   ₹{Math.round((50000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
                 </p>
               </div>
