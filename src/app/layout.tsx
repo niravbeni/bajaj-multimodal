@@ -29,6 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="theme-color" content="#012953" />
+      </head>
       <body
         className={`${inter.variable} antialiased`}
       >

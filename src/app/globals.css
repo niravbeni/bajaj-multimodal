@@ -21,6 +21,17 @@ body {
   padding-top: env(safe-area-inset-top);
 }
 
+/* iOS status bar styling */
+.status-bar-blue {
+  background: linear-gradient(to bottom, #012953 0%, #012953 100%);
+  padding-top: env(safe-area-inset-top);
+}
+
+.status-bar-chat {
+  background: linear-gradient(to bottom, #075e54 0%, #075e54 100%);
+  padding-top: env(safe-area-inset-top);
+}
+
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom);
 }

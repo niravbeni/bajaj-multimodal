@@ -276,7 +276,7 @@ export default function RankingPage() {
        </div>
 
       {/* Fixed Bottom CTA */}
-      <div className="p-6 pb-16 safe-area-bottom">
+      <div className="p-6 pb-20 safe-area-bottom">
         <motion.div
           key={`cta-${activeIndex}`}
           initial={{ opacity: 0, y: 20 }}

@@ -31,10 +31,10 @@ export default function LoadingComparePage() {
     };
   }, [router]);
 
-  // Show black background while loading to prevent flash
+  // Show blue background while loading to prevent flash
   if (isLoading) {
     return (
-      <div className="h-screen w-screen bg-black" />
+      <div className="h-screen w-screen" style={{ backgroundColor: '#012953' }} />
     );
   }
 
