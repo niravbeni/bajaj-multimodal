@@ -47,7 +47,10 @@ export default function LoadingComparePage() {
   if (isMobile) {
     // Mobile: Clean full-screen video only
     return (
-      <div className="screen-black ios-safe-height w-screen overflow-hidden safe-area-top safe-area-bottom">
+      <div className="screen-black w-screen overflow-hidden" style={{ 
+        height: '100dvh',
+        minHeight: '-webkit-fill-available'
+      }}>
         <video
           autoPlay
           muted
@@ -55,7 +58,11 @@ export default function LoadingComparePage() {
           playsInline
           preload="metadata"
           className="w-full h-full object-cover"
-          style={{ backgroundColor: 'black' }}
+          style={{ 
+            backgroundColor: 'black',
+            height: '100%',
+            width: '100%'
+          }}
         >
           <source src="/loader.mp4" type="video/mp4" />
         </video>
