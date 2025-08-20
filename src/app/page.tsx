@@ -1,103 +1,110 @@
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
+import { useFlowStore } from '../../hooks/useFlowStore';
+import { getIntent } from '../../hooks/useIntent';
+import ChatWindow from '@/components/chat/ChatWindow';
+import BottomSheetScan from '@/components/scan/BottomSheetScan';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { 
+    messages, 
+    isBottomSheetOpen, 
+    addMessage, 
+    setBottomSheetOpen 
+  } = useFlowStore();
+  
+  const [isTyping, setIsTyping] = useState(false);
+  const [bottomSheetHeight, setBottomSheetHeight] = useState(0);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleSendMessage = async (text: string) => {
+    // Add user message
+    addMessage({ role: 'user', text });
+
+    // Check intent
+    const intent = getIntent(text);
+
+    // Get AI response from API
+    setIsTyping(true);
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages,
+          latest: text
+        }),
+      });
+
+      const data = await response.json();
+      console.log('API Response:', data);
+      
+      // Add a small delay for better UX
+      setTimeout(() => {
+        addMessage({ role: 'assistant', text: data.response });
+        setIsTyping(false);
+        
+        // Open camera AFTER bot response is shown
+        if (intent === 'open_scan') {
+          setTimeout(() => {
+            setBottomSheetOpen(true);
+          }, 300); // Small delay to ensure message is rendered
+        }
+      }, 500);
+    } catch (error) {
+      console.error('Chat API Error:', error);
+      addMessage({ 
+        role: 'assistant', 
+        text: 'Sorry, I encountered an error. Please try again.' 
+      });
+      setIsTyping(false);
+      
+      // Open camera even on error if intent was to scan
+      if (intent === 'open_scan') {
+        setTimeout(() => {
+          setBottomSheetOpen(true);
+        }, 300);
+      }
+    }
+  };
+
+  return (
+    <div className="h-screen flex flex-col safe-area-top safe-area-bottom" style={{ backgroundColor: '#e5ddd5' }}>
+      {/* WhatsApp-style Header */}
+      <header className="px-4 py-3 flex items-center gap-3 safe-area-top" style={{ backgroundColor: '#075e54' }}>
+        <div className="w-10 h-10 rounded-full bg-[#075e54] flex items-center justify-center">
+          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+            <path d="M19 15L20.09 18.26L23 19L20.09 19.74L19 23L17.91 19.74L15 19L17.91 18.26L19 15Z" />
+            <path d="M5 15L6.09 18.26L9 19L6.09 19.74L5 23L3.91 19.74L1 19L3.91 18.26L5 15Z" />
+          </svg>
         </div>
+        <div className="flex-1">
+          <h1 className="text-white font-medium text-lg">AI Assistant</h1>
+          <p className="text-gray-400 text-sm">Online</p>
+        </div>
+        <button className="w-6 h-6 text-gray-400">
+          <svg fill="currentColor" viewBox="0 0 24 24" className="w-full h-full">
+            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+        </button>
+      </header>
+      
+      <main className="flex-1 overflow-hidden">
+        <ChatWindow 
+          messages={messages} 
+          onSendMessage={handleSendMessage} 
+          isTyping={isTyping}
+          bottomSheetHeight={bottomSheetHeight}
+        />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <BottomSheetScan 
+        open={isBottomSheetOpen} 
+        onOpenChange={setBottomSheetOpen}
+        onHeightChange={setBottomSheetHeight}
+      />
     </div>
   );
 }
