@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useFlowStore } from '../../../hooks/useFlowStore';
@@ -9,6 +9,7 @@ export default function LoadingComparePage() {
   const { selectedProduct } = useFlowStore();
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Set theme color for loading page
@@ -26,16 +27,39 @@ export default function LoadingComparePage() {
     setIsLoading(false);
     window.addEventListener('resize', checkMobile);
     
-    // Navigate to ranking page after 3 seconds
-    const timer = setTimeout(() => {
-      router.push('/ranking');
-    }, 3000);
-
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('resize', checkMobile);
     };
+  }, []);
+
+  // Handle video end event for navigation
+  const handleVideoEnd = () => {
+    router.push('/ranking');
+  };
+
+  // Fallback timer only for safety (longer than video duration)
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      router.push('/ranking');
+    }, 8000); // 8 second fallback (longer than 6 sec video)
+
+    return () => {
+      clearTimeout(fallbackTimer);
+    };
   }, [router]);
+
+  // Desktop: Wait for same duration as video (6+ seconds) for consistency
+  useEffect(() => {
+    if (!isMobile) {
+      const timer = setTimeout(() => {
+        router.push('/ranking');
+      }, 6500); // 6.5 seconds to match video timing
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [router, isMobile]);
 
   // Show black background while loading to prevent flash
   if (isLoading) {
@@ -45,22 +69,23 @@ export default function LoadingComparePage() {
   }
 
   if (isMobile) {
-    // Mobile: Clean full-screen video only
+    // Mobile: Clean full-screen video only - wait for video to complete
     return (
       <div className="screen-black w-screen overflow-hidden" style={{ 
         height: '100dvh',
         minHeight: '-webkit-fill-available'
       }}>
         <video
+          ref={videoRef}
           autoPlay
           muted
-          loop
           playsInline
           preload="auto"
           className="w-full h-full object-cover"
           style={{ 
             backgroundColor: 'black'
           }}
+          onEnded={handleVideoEnd}
         >
           <source src="/loader.mp4" type="video/mp4" />
         </video>
