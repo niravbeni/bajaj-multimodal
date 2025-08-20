@@ -50,9 +50,8 @@ export default function PaymentSuccessPage() {
   }, []);
 
   return (
-    <div className="ios-safe-height overflow-hidden" style={{ backgroundColor: '#012953' }}>
-      {/* Status Bar Area - Blue */}
-      <div className="w-full safe-area-top" style={{ backgroundColor: '#012953' }}></div>
+    <div className="screen-blue">
+      <div className="ios-safe-height overflow-hidden">
       
       {/* Confetti Animation */}
       {showConfetti && (
@@ -195,7 +194,7 @@ export default function PaymentSuccessPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="w-full max-w-sm mt-auto pb-4"
+          className="w-full max-w-sm mt-auto pb-8 mb-6"
         >
           <Button
             onClick={() => {
@@ -207,6 +206,7 @@ export default function PaymentSuccessPage() {
             Continue Shopping
           </Button>
         </motion.div>
+      </div>
       </div>
     </div>
   );

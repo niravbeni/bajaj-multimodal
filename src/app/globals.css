@@ -21,15 +21,32 @@ body {
   padding-top: env(safe-area-inset-top);
 }
 
-/* iOS status bar styling */
-.status-bar-blue {
-  background: linear-gradient(to bottom, #012953 0%, #012953 100%);
-  padding-top: env(safe-area-inset-top);
+/* iOS status bar styling - extend background to full viewport */
+.screen-blue {
+  background: #012953;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
-.status-bar-chat {
-  background: linear-gradient(to bottom, #075e54 0%, #075e54 100%);
-  padding-top: env(safe-area-inset-top);
+.screen-green {
+  background: #075e54;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.screen-black {
+  background: #000000;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* iOS viewport fill */
+@supports (-webkit-appearance: none) {
+  .screen-blue,
+  .screen-green,
+  .screen-black {
+    min-height: -webkit-fill-available;
+  }
 }
 
 .safe-area-bottom {

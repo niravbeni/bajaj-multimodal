@@ -70,9 +70,8 @@ export default function Home() {
   };
 
   return (
-    <div className="ios-safe-height flex flex-col overflow-hidden" style={{ backgroundColor: '#e5ddd5' }}>
-      {/* Status Bar Area - Green */}
-      <div className="w-full safe-area-top" style={{ backgroundColor: '#075e54' }}></div>
+    <div className="screen-green">
+      <div className="ios-safe-height flex flex-col overflow-hidden" style={{ backgroundColor: '#e5ddd5' }}>
       
       {/* WhatsApp-style Header */}
       <header className="px-4 py-3 pt-6 flex items-center gap-3" style={{ backgroundColor: '#075e54' }}>
@@ -108,6 +107,7 @@ export default function Home() {
         onOpenChange={setBottomSheetOpen}
         onHeightChange={setBottomSheetHeight}
       />
+      </div>
     </div>
   );
 }

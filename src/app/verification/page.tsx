@@ -72,9 +72,8 @@ export default function VerificationPage() {
   };
 
   return (
-    <div className="ios-safe-height flex flex-col overflow-hidden" style={{ backgroundColor: '#012953' }}>
-      {/* Status Bar Area - Blue */}
-      <div className="w-full safe-area-top" style={{ backgroundColor: '#012953' }}></div>
+    <div className="screen-blue">
+      <div className="ios-safe-height flex flex-col overflow-hidden">
       
       {/* Header - Minimal */}
       <header className="p-2 z-20 relative" style={{ backgroundColor: '#012953' }}>
@@ -224,6 +223,7 @@ export default function VerificationPage() {
             </div>
           </div>
         </motion.div>
+      </div>
       </div>
     </div>
   );

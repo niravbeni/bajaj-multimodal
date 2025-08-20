@@ -101,9 +101,8 @@ export default function RankingPage() {
   };
 
   return (
-    <div className="ios-safe-height flex flex-col overflow-hidden" style={{ backgroundColor: '#012953' }}>
-      {/* Status Bar Area - Blue */}
-      <div className="w-full safe-area-top" style={{ backgroundColor: '#012953' }}></div>
+    <div className="screen-blue">
+      <div className="ios-safe-height flex flex-col overflow-hidden">
       
       {/* Header */}
       <header className="p-4 pt-8 flex items-center justify-center z-20 relative" style={{ backgroundColor: '#012953' }}>
@@ -163,7 +162,7 @@ export default function RankingPage() {
                </div>
 
                {/* Card Content */}
-               <div className="h-full flex flex-col p-4 pb-6 text-center">
+               <div className="h-full flex flex-col p-3 pb-4 text-center">
                  {/* EMI Provider Name at Top */}
                  <motion.div
                    initial={{ opacity: 0, y: -10 }}
@@ -208,17 +207,17 @@ export default function RankingPage() {
                    initial={{ y: 20, opacity: 0 }}
                    animate={{ y: 0, opacity: 1 }}
                    transition={{ delay: 0.4 }}
-                   className="flex-1 space-y-3 pb-2"
+                   className="flex-1 space-y-2 pb-1"
                  >
                    {/* Processing Fee and Approval Time - Side by Side */}
                    <div className="grid grid-cols-2 gap-3">
                      {/* Processing Fee */}
-                     <div className={`rounded-xl p-3 text-center ${
+                     <div className={`rounded-lg p-2 text-center ${
                        activeIndex === 0 
-                         ? "bg-green-50 border-2 border-green-300" 
-                         : "bg-gray-50 border-2 border-gray-200"
+                         ? "bg-green-50 border border-green-300" 
+                         : "bg-gray-50 border border-gray-200"
                      }`}>
-                       <Shield className={`mx-auto h-5 w-5 mb-1 ${
+                       <Shield className={`mx-auto h-4 w-4 mb-1 ${
                          activeIndex === 0 ? 'text-green-600' : 'text-gray-500'
                        }`} />
                        <p className="text-xs font-medium text-gray-800">
@@ -227,12 +226,12 @@ export default function RankingPage() {
                      </div>
 
                      {/* Approval Time */}
-                     <div className={`rounded-xl p-3 text-center ${
+                     <div className={`rounded-lg p-2 text-center ${
                        activeIndex === 0 
-                         ? "bg-blue-50 border-2 border-blue-300" 
-                         : "bg-gray-50 border-2 border-gray-200"
+                         ? "bg-blue-50 border border-blue-300" 
+                         : "bg-gray-50 border border-gray-200"
                      }`}>
-                       <Clock className={`mx-auto h-5 w-5 mb-1 ${
+                       <Clock className={`mx-auto h-4 w-4 mb-1 ${
                          activeIndex === 0 ? 'text-blue-600' : 'text-gray-500'
                        }`} />
                        <p className="text-xs font-medium text-gray-800">
@@ -242,16 +241,16 @@ export default function RankingPage() {
                    </div>
 
                    {/* Monthly EMI - Full Width Below */}
-                   <div className={`rounded-xl p-3 text-center ${
+                   <div className={`rounded-lg p-2 text-center ${
                      activeIndex === 0 
-                       ? "bg-yellow-50 border-2 border-yellow-400" 
-                       : "bg-gray-50 border-2 border-gray-200"
+                       ? "bg-yellow-50 border border-yellow-400" 
+                       : "bg-gray-50 border border-gray-200"
                    }`}>
-                     <TrendingUp className={`mx-auto h-5 w-5 mb-1 ${
+                     <TrendingUp className={`mx-auto h-4 w-4 mb-1 ${
                        activeIndex === 0 ? 'text-yellow-600' : 'text-gray-500'
                      }`} />
                      <p className="text-xs font-medium text-gray-600 mb-1">Monthly EMI</p>
-                     <p className="text-lg font-bold text-gray-900">
+                     <p className="text-base font-bold text-gray-900">
                        ₹{Math.round((50000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
                      </p>
                    </div>
@@ -279,7 +278,7 @@ export default function RankingPage() {
        </div>
 
       {/* Fixed Bottom CTA */}
-      <div className="p-6 pb-24 safe-area-bottom">
+      <div className="p-6 pb-8 mb-8 safe-area-bottom">
         <motion.div
           key={`cta-${activeIndex}`}
           initial={{ opacity: 0, y: 20 }}
@@ -297,6 +296,7 @@ export default function RankingPage() {
              Go with {activeItem.provider}
            </Button>
         </motion.div>
+      </div>
       </div>
     </div>
   );

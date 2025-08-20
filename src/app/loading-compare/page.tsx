@@ -31,19 +31,17 @@ export default function LoadingComparePage() {
     };
   }, [router]);
 
-  // Show blue background while loading to prevent flash
+  // Show black background while loading to prevent flash
   if (isLoading) {
     return (
-      <div className="h-screen w-screen" style={{ backgroundColor: '#012953' }} />
+      <div className="screen-black h-screen w-screen" />
     );
   }
 
   if (isMobile) {
     // Mobile: Clean full-screen video only
     return (
-      <div className="h-screen w-screen bg-black overflow-hidden">
-        {/* Status Bar Area - Black */}
-        <div className="w-full safe-area-top bg-black absolute top-0 left-0 right-0 z-10"></div>
+      <div className="screen-black h-screen w-screen overflow-hidden">
         
         <video
           autoPlay
