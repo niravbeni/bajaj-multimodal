@@ -103,7 +103,7 @@ export default function RankingPage() {
   return (
     <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
       {/* Header */}
-      <header className="p-4 flex items-center justify-center safe-area-top z-20 relative">
+      <header className="p-4 pt-8 flex items-center justify-center safe-area-top z-20 relative">
         <h1 className="text-xl font-semibold text-white">Choose Your EMI</h1>
       </header>
 
@@ -200,50 +200,55 @@ export default function RankingPage() {
                    <p className="text-gray-600 text-base font-medium">Annual Interest Rate</p>
                  </motion.div>
 
-                 {/* Features Grid */}
+                 {/* Compact Key Info Grid */}
                  <motion.div
                    initial={{ y: 20, opacity: 0 }}
                    animate={{ y: 0, opacity: 1 }}
                    transition={{ delay: 0.4 }}
-                   className={`grid grid-cols-2 gap-3 flex-1 ${activeIndex === 0 ? "pb-4" : "pb-6"}`}
+                   className="flex-1 space-y-3 pb-2"
                  >
-                   {getFeatures(activeIndex).map((feature, idx) => (
-                     <div
-                       key={idx}
-                       className={`rounded-xl border-2 ${activeIndex === 0 ? "p-2" : "p-3"} ${
-                         feature.highlight 
-                           ? `bg-gray-50 ${getBorderColor(activeIndex).replace('border-', 'border-')}` 
-                           : 'bg-gray-50 border-gray-200'
-                       }`}
-                     >
-                       <feature.icon className={`mx-auto ${activeIndex === 0 ? "h-5 w-5 mb-1" : "h-6 w-6 mb-2"} ${
-                         feature.highlight ? 'text-gray-700' : 'text-gray-500'
-                       }`} />
-                       <p className={`text-xs font-medium text-center ${
-                         feature.highlight ? 'text-gray-800' : 'text-gray-600'
-                       }`}>
-                         {feature.text}
-                       </p>
-                     </div>
-                   ))}
-                 </motion.div>
-
-                 {/* EMI Amount - Fixed at Bottom */}
-                 <motion.div
-                   initial={{ y: 20, opacity: 0 }}
-                   animate={{ y: 0, opacity: 1 }}
-                   transition={{ delay: 0.5 }}
-                   className={`rounded-2xl p-4 mt-auto ${
+                   {/* Processing Fee */}
+                   <div className={`rounded-xl p-3 text-center ${
                      activeIndex === 0 
-                       ? "bg-yellow-50 border-2 border-yellow-500" 
-                       : "bg-gray-100 border-2 border-gray-300"
-                   }`}
-                 >
-                   <p className="text-gray-600 text-sm mb-1 font-medium">Monthly EMI</p>
-                   <p className="text-2xl font-bold text-gray-900">
-                     ₹{Math.round((50000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
-                   </p>
-                   <p className="text-gray-500 text-xs">for 12 months</p>
+                       ? "bg-green-50 border-2 border-green-300" 
+                       : "bg-gray-50 border-2 border-gray-200"
+                   }`}>
+                     <Shield className={`mx-auto h-5 w-5 mb-1 ${
+                       activeIndex === 0 ? 'text-green-600' : 'text-gray-500'
+                     }`} />
+                     <p className="text-xs font-medium text-gray-800">
+                       {activeIndex === 0 ? 'Zero Processing Fee' : `₹${activeIndex === 1 ? '999' : '1499'} Processing Fee`}
+                     </p>
+                   </div>
+
+                   {/* Approval Time */}
+                   <div className={`rounded-xl p-3 text-center ${
+                     activeIndex === 0 
+                       ? "bg-blue-50 border-2 border-blue-300" 
+                       : "bg-gray-50 border-2 border-gray-200"
+                   }`}>
+                     <Clock className={`mx-auto h-5 w-5 mb-1 ${
+                       activeIndex === 0 ? 'text-blue-600' : 'text-gray-500'
+                     }`} />
+                     <p className="text-xs font-medium text-gray-800">
+                       {activeIndex === 0 ? 'Instant Approval' : `${activeIndex === 1 ? '24' : '48'} Hour Approval`}
+                     </p>
+                   </div>
+
+                   {/* Monthly EMI */}
+                   <div className={`rounded-xl p-3 text-center ${
+                     activeIndex === 0 
+                       ? "bg-yellow-50 border-2 border-yellow-400" 
+                       : "bg-gray-50 border-2 border-gray-200"
+                   }`}>
+                     <TrendingUp className={`mx-auto h-5 w-5 mb-1 ${
+                       activeIndex === 0 ? 'text-yellow-600' : 'text-gray-500'
+                     }`} />
+                     <p className="text-xs font-medium text-gray-600 mb-1">Monthly EMI</p>
+                     <p className="text-lg font-bold text-gray-900">
+                       ₹{Math.round((50000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
+                     </p>
+                   </div>
                  </motion.div>
                </div>
              </div>
@@ -268,7 +273,7 @@ export default function RankingPage() {
        </div>
 
       {/* Fixed Bottom CTA */}
-      <div className="p-4 pb-8 safe-area-bottom">
+      <div className="p-6 pb-12 safe-area-bottom">
         <motion.div
           key={`cta-${activeIndex}`}
           initial={{ opacity: 0, y: 20 }}

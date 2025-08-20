@@ -165,35 +165,29 @@ export default function FaceVerificationPage() {
                 className="bg-green-500/20 backdrop-blur-sm rounded-2xl p-4 border border-green-400/30"
               >
                 <h2 className="text-green-400 text-lg font-medium mb-2">Verifying...</h2>
-                <p className="text-green-300 text-sm">Please hold still</p>
+                <p className="text-green-300 text-sm mb-4">Please hold still</p>
+                
+                {/* Progress Bar - Inline */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-green-300 text-xs font-medium">Progress</span>
+                    <span className="text-green-400 text-xs font-bold">{progress}%</span>
+                  </div>
+                  <div className="w-full bg-green-900/30 rounded-full h-2">
+                    <motion.div 
+                      className="bg-green-400 h-2 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: 0.1 }}
+                    />
+                  </div>
+                </div>
               </motion.div>
             )}
           </div>
         </div>
 
-        {/* Progress Bar */}
-        {isScanning && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="px-8"
-          >
-            <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-white text-sm font-medium">Verification Progress</span>
-                <span className="text-green-400 text-sm font-bold">{progress}%</span>
-              </div>
-              <div className="w-full bg-white/20 rounded-full h-2">
-                <motion.div 
-                  className="bg-green-400 h-2 rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.1 }}
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
+
 
         {/* Bottom Info */}
         <div className="px-8 mt-4">

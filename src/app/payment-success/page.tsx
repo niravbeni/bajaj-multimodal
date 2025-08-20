@@ -81,7 +81,7 @@ export default function PaymentSuccessPage() {
         </div>
       )}
 
-      <div className="ios-safe-height flex flex-col items-center justify-center p-6 relative safe-area-top safe-area-bottom overflow-y-auto">
+      <div className="ios-safe-height flex flex-col items-center p-6 relative safe-area-top safe-area-bottom">
         {/* Success Icon - Moved down */}
         <motion.div
           initial={{ scale: 0 }}
@@ -181,12 +181,15 @@ export default function PaymentSuccessPage() {
           </div>
         </motion.div>
 
-        {/* Action Button - Only Continue Shopping */}
+        {/* Spacer to push button to bottom */}
+        <div className="flex-1"></div>
+
+        {/* Action Button - Fixed at Bottom */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="w-full max-w-sm"
+          className="w-full max-w-sm mt-auto pb-4"
         >
           <Button
             onClick={() => {

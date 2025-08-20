@@ -8,6 +8,7 @@ export default function LoadingComparePage() {
   const router = useRouter();
   const { selectedProduct } = useFlowStore();
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Detect mobile device
@@ -16,6 +17,7 @@ export default function LoadingComparePage() {
     };
     
     checkMobile();
+    setIsLoading(false);
     window.addEventListener('resize', checkMobile);
     
     // Navigate to ranking page after 3 seconds
@@ -28,6 +30,13 @@ export default function LoadingComparePage() {
       window.removeEventListener('resize', checkMobile);
     };
   }, [router]);
+
+  // Show black background while loading to prevent flash
+  if (isLoading) {
+    return (
+      <div className="h-screen w-screen bg-black" />
+    );
+  }
 
   if (isMobile) {
     // Mobile: Clean full-screen video only

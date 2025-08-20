@@ -108,7 +108,7 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
         className={`pointer-events-auto flex flex-col ${
           dragState === 'borderless' 
             ? 'fixed inset-0' 
-            : 'absolute bottom-0 left-0 right-0'
+            : 'fixed bottom-0 left-0 right-0 top-0'
         }`}
         style={{
           backgroundColor: dragState === 'borderless' ? 'transparent' : '#075e54',

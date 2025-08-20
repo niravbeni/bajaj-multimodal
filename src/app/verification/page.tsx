@@ -73,16 +73,8 @@ export default function VerificationPage() {
 
   return (
     <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
-      {/* Header */}
-      <header className="p-4 flex items-center safe-area-top z-20 relative">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={() => router.back()}
-          className="w-12 h-12 cursor-pointer hover:cursor-pointer text-white hover:bg-white/10"
-        >
-          <ArrowLeft className="h-6 w-6" />
-        </Button>
+      {/* Header - Minimal */}
+      <header className="p-2 safe-area-top z-20 relative">
       </header>
 
       {/* Product Name */}
@@ -97,7 +89,7 @@ export default function VerificationPage() {
       </div>
 
       {/* Phone Mockup Area - Overlapped by Card */}
-      <div className="relative w-full h-96 -mt-4">
+      <div className="relative w-full h-96 -mt-8">
         {/* S24 Phone Image - Extended View */}
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
