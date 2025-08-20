@@ -56,7 +56,7 @@ export default function ChatWindow({ messages, onSendMessage, disabled, isTyping
         {/* Extra bottom padding for iOS */}
         <div className="h-20" />
       </div>
-      <div className="relative z-10 safe-area-bottom bg-inherit">
+      <div className="relative z-10 safe-area-bottom">
         <Composer onSendMessage={onSendMessage} disabled={disabled} isTyping={isTyping} />
       </div>
     </div>
