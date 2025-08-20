@@ -47,7 +47,7 @@ export default function LoadingComparePage() {
   if (isMobile) {
     // Mobile: Clean full-screen video only
     return (
-      <div className="screen-black w-screen overflow-hidden relative" style={{ 
+      <div className="screen-black w-screen overflow-hidden" style={{ 
         height: '100dvh',
         minHeight: '-webkit-fill-available'
       }}>
@@ -56,16 +56,10 @@ export default function LoadingComparePage() {
           muted
           loop
           playsInline
-          preload="metadata"
-          className="w-full h-full"
+          preload="auto"
+          className="w-full h-full object-cover"
           style={{ 
-            backgroundColor: 'black',
-            height: '100%',
-            width: '100%',
-            objectFit: 'fill',
-            position: 'absolute',
-            top: 0,
-            left: 0
+            backgroundColor: 'black'
           }}
         >
           <source src="/loader.mp4" type="video/mp4" />
