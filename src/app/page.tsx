@@ -72,7 +72,7 @@ export default function Home() {
   return (
     <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#e5ddd5' }}>
       {/* WhatsApp-style Header */}
-      <header className="px-4 py-3 flex items-center gap-3 safe-area-top" style={{ backgroundColor: '#075e54' }}>
+      <header className="px-4 py-3 pt-6 flex items-center gap-3 safe-area-top" style={{ backgroundColor: '#075e54' }}>
         <div className="w-10 h-10 rounded-full bg-[#075e54] flex items-center justify-center">
           <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />

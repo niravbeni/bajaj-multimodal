@@ -83,7 +83,6 @@ export default function VerificationPage() {
         >
           <ArrowLeft className="h-6 w-6" />
         </Button>
-        <h1 className="ml-4 text-xl font-semibold text-white">Verification</h1>
       </header>
 
       {/* Product Name */}
@@ -98,7 +97,7 @@ export default function VerificationPage() {
       </div>
 
       {/* Phone Mockup Area - Overlapped by Card */}
-      <div className="relative w-full h-80">
+      <div className="relative w-full h-96 -mt-4">
         {/* S24 Phone Image - Extended View */}
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}

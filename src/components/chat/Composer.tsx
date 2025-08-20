@@ -23,9 +23,7 @@ export default function Composer({ onSendMessage, disabled = false, isTyping = f
   };
 
   return (
-    <div className="safe-area-bottom">
-
-      
+    <div className="safe-area-bottom bg-transparent">
       <div className="px-3 py-2 bg-transparent">
         <form onSubmit={handleSubmit} className="flex items-center gap-3 w-full max-w-none">
           {/* Input Container */}

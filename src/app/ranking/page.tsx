@@ -103,16 +103,8 @@ export default function RankingPage() {
   return (
     <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
       {/* Header */}
-      <header className="p-4 flex items-center safe-area-top z-20 relative">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={() => router.push('/')}
-          className="w-12 h-12 cursor-pointer hover:cursor-pointer text-white hover:bg-white/10"
-        >
-          <ArrowLeft className="h-6 w-6" />
-        </Button>
-        <h1 className="ml-4 text-xl font-semibold text-white">Choose Your EMI</h1>
+      <header className="p-4 flex items-center justify-center safe-area-top z-20 relative">
+        <h1 className="text-xl font-semibold text-white">Choose Your EMI</h1>
       </header>
 
       {/* Title */}
@@ -168,7 +160,7 @@ export default function RankingPage() {
                </div>
 
                {/* Card Content */}
-               <div className="h-full flex flex-col p-6 text-center">
+               <div className="h-full flex flex-col p-4 pb-6 text-center">
                  {/* EMI Provider Name at Top */}
                  <motion.div
                    initial={{ opacity: 0, y: -10 }}
@@ -276,7 +268,7 @@ export default function RankingPage() {
        </div>
 
       {/* Fixed Bottom CTA */}
-      <div className="p-4 safe-area-bottom">
+      <div className="p-4 pb-8 safe-area-bottom">
         <motion.div
           key={`cta-${activeIndex}`}
           initial={{ opacity: 0, y: 20 }}

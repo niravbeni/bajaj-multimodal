@@ -95,8 +95,8 @@ export default function PaymentSuccessPage() {
           className="mb-6 mt-8"
         >
           <div className="relative">
-            <div className="w-32 h-32 bg-green-500 rounded-full flex items-center justify-center shadow-2xl">
-              <CheckCircle className="h-16 w-16 text-white" />
+            <div className="w-28 h-28 bg-green-500 rounded-full flex items-center justify-center shadow-2xl">
+              <CheckCircle className="h-14 w-14 text-white" />
             </div>
             
             {/* Success Ring Animation */}
@@ -170,14 +170,7 @@ export default function PaymentSuccessPage() {
               </div>
             </div>
 
-            {/* Date */}
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-              <User className="h-6 w-6 text-purple-600" />
-              <div className="flex-1">
-                <p className="font-semibold text-gray-900 text-sm">Approved on</p>
-                <p className="text-gray-600 text-xs">{currentDate}</p>
-              </div>
-            </div>
+
           </div>
 
           {/* Success Badge */}
