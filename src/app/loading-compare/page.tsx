@@ -42,6 +42,9 @@ export default function LoadingComparePage() {
     // Mobile: Clean full-screen video only
     return (
       <div className="h-screen w-screen bg-black overflow-hidden">
+        {/* Status Bar Area - Black */}
+        <div className="w-full safe-area-top bg-black absolute top-0 left-0 right-0 z-10"></div>
+        
         <video
           autoPlay
           muted

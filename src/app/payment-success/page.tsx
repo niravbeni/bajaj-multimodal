@@ -50,7 +50,10 @@ export default function PaymentSuccessPage() {
   }, []);
 
   return (
-    <div className="ios-safe-height safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
+    <div className="ios-safe-height overflow-hidden" style={{ backgroundColor: '#012953' }}>
+      {/* Status Bar Area - Blue */}
+      <div className="w-full safe-area-top" style={{ backgroundColor: '#012953' }}></div>
+      
       {/* Confetti Animation */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50">
@@ -81,7 +84,7 @@ export default function PaymentSuccessPage() {
         </div>
       )}
 
-      <div className="ios-safe-height flex flex-col items-center p-6 relative safe-area-top safe-area-bottom overflow-hidden">
+      <div className="ios-safe-height flex flex-col items-center p-6 relative overflow-hidden safe-area-bottom">
         {/* Success Icon - Moved down */}
         <motion.div
           initial={{ scale: 0 }}

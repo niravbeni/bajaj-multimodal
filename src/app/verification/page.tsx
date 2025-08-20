@@ -72,9 +72,12 @@ export default function VerificationPage() {
   };
 
   return (
-    <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
+    <div className="ios-safe-height flex flex-col overflow-hidden" style={{ backgroundColor: '#012953' }}>
+      {/* Status Bar Area - Blue */}
+      <div className="w-full safe-area-top" style={{ backgroundColor: '#012953' }}></div>
+      
       {/* Header - Minimal */}
-      <header className="p-2 safe-area-top z-20 relative">
+      <header className="p-2 z-20 relative" style={{ backgroundColor: '#012953' }}>
       </header>
 
       {/* Product Name */}
@@ -205,7 +208,7 @@ export default function VerificationPage() {
               <div className="flex-1"></div>
 
               {/* Verify Button */}
-              <div className="pb-4">
+              <div className="pb-4 safe-area-bottom">
                 <Button
                   onClick={handleVerifyNow}
                   disabled={!isOtpComplete}

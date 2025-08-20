@@ -101,9 +101,12 @@ export default function RankingPage() {
   };
 
   return (
-    <div className="ios-safe-height flex flex-col safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
+    <div className="ios-safe-height flex flex-col overflow-hidden" style={{ backgroundColor: '#012953' }}>
+      {/* Status Bar Area - Blue */}
+      <div className="w-full safe-area-top" style={{ backgroundColor: '#012953' }}></div>
+      
       {/* Header */}
-      <header className="p-4 pt-8 flex items-center justify-center safe-area-top z-20 relative">
+      <header className="p-4 pt-8 flex items-center justify-center z-20 relative" style={{ backgroundColor: '#012953' }}>
         <h1 className="text-xl font-semibold text-white">Choose Your EMI</h1>
       </header>
 
@@ -166,9 +169,9 @@ export default function RankingPage() {
                    initial={{ opacity: 0, y: -10 }}
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: 0.1 }}
-                   className="pt-2 pb-4"
+                   className={activeIndex === 0 ? "pt-2 pb-2" : "pt-2 pb-4"}
                  >
-                   <h2 className="text-2xl font-bold text-gray-900">
+                   <h2 className={activeIndex === 0 ? "text-xl font-bold text-gray-900" : "text-2xl font-bold text-gray-900"}>
                      {activeItem.provider}
                    </h2>
                  </motion.div>
@@ -179,10 +182,10 @@ export default function RankingPage() {
                      initial={{ scale: 0.8, opacity: 0 }}
                      animate={{ scale: 1, opacity: 1 }}
                      transition={{ delay: 0.2 }}
-                     className="pb-3"
+                     className="pb-2"
                    >
-                     <div className="bg-yellow-100 text-yellow-800 text-xs px-4 py-2 rounded-full border-2 border-yellow-300 font-semibold inline-block">
-                       🏆&nbsp;&nbsp;RECOMMENDED
+                     <div className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full border border-yellow-300 font-semibold inline-block">
+                       🏆 RECOMMENDED
                      </div>
                    </motion.div>
                  )}
@@ -192,12 +195,12 @@ export default function RankingPage() {
                    initial={{ scale: 0.8, opacity: 0 }}
                    animate={{ scale: 1, opacity: 1 }}
                    transition={{ delay: 0.3 }}
-                   className={activeIndex === 0 ? "pb-4" : "pb-6"}
+                   className={activeIndex === 0 ? "pb-3" : "pb-6"}
                  >
-                   <div className={`font-bold text-gray-900 mb-2 ${activeIndex === 0 ? "text-4xl" : "text-5xl"}`}>
+                   <div className={`font-bold text-gray-900 mb-1 ${activeIndex === 0 ? "text-3xl" : "text-5xl"}`}>
                      {activeItem.apr}%
                    </div>
-                   <p className="text-gray-600 text-base font-medium">Annual Interest Rate</p>
+                   <p className={`text-gray-600 font-medium ${activeIndex === 0 ? "text-sm" : "text-base"}`}>Annual Interest Rate</p>
                  </motion.div>
 
                  {/* Compact Key Info Grid */}
@@ -276,7 +279,7 @@ export default function RankingPage() {
        </div>
 
       {/* Fixed Bottom CTA */}
-      <div className="p-6 pb-20 safe-area-bottom">
+      <div className="p-6 pb-24 safe-area-bottom">
         <motion.div
           key={`cta-${activeIndex}`}
           initial={{ opacity: 0, y: 20 }}
