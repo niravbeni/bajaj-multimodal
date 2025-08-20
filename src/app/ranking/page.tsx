@@ -207,35 +207,38 @@ export default function RankingPage() {
                    transition={{ delay: 0.4 }}
                    className="flex-1 space-y-3 pb-2"
                  >
-                   {/* Processing Fee */}
-                   <div className={`rounded-xl p-3 text-center ${
-                     activeIndex === 0 
-                       ? "bg-green-50 border-2 border-green-300" 
-                       : "bg-gray-50 border-2 border-gray-200"
-                   }`}>
-                     <Shield className={`mx-auto h-5 w-5 mb-1 ${
-                       activeIndex === 0 ? 'text-green-600' : 'text-gray-500'
-                     }`} />
-                     <p className="text-xs font-medium text-gray-800">
-                       {activeIndex === 0 ? 'Zero Processing Fee' : `₹${activeIndex === 1 ? '999' : '1499'} Processing Fee`}
-                     </p>
+                   {/* Processing Fee and Approval Time - Side by Side */}
+                   <div className="grid grid-cols-2 gap-3">
+                     {/* Processing Fee */}
+                     <div className={`rounded-xl p-3 text-center ${
+                       activeIndex === 0 
+                         ? "bg-green-50 border-2 border-green-300" 
+                         : "bg-gray-50 border-2 border-gray-200"
+                     }`}>
+                       <Shield className={`mx-auto h-5 w-5 mb-1 ${
+                         activeIndex === 0 ? 'text-green-600' : 'text-gray-500'
+                       }`} />
+                       <p className="text-xs font-medium text-gray-800">
+                         {activeIndex === 0 ? 'Zero Processing Fee' : `₹${activeIndex === 1 ? '999' : '1499'} Processing Fee`}
+                       </p>
+                     </div>
+
+                     {/* Approval Time */}
+                     <div className={`rounded-xl p-3 text-center ${
+                       activeIndex === 0 
+                         ? "bg-blue-50 border-2 border-blue-300" 
+                         : "bg-gray-50 border-2 border-gray-200"
+                     }`}>
+                       <Clock className={`mx-auto h-5 w-5 mb-1 ${
+                         activeIndex === 0 ? 'text-blue-600' : 'text-gray-500'
+                       }`} />
+                       <p className="text-xs font-medium text-gray-800">
+                         {activeIndex === 0 ? 'Instant Approval' : `${activeIndex === 1 ? '24' : '48'} Hour Approval`}
+                       </p>
+                     </div>
                    </div>
 
-                   {/* Approval Time */}
-                   <div className={`rounded-xl p-3 text-center ${
-                     activeIndex === 0 
-                       ? "bg-blue-50 border-2 border-blue-300" 
-                       : "bg-gray-50 border-2 border-gray-200"
-                   }`}>
-                     <Clock className={`mx-auto h-5 w-5 mb-1 ${
-                       activeIndex === 0 ? 'text-blue-600' : 'text-gray-500'
-                     }`} />
-                     <p className="text-xs font-medium text-gray-800">
-                       {activeIndex === 0 ? 'Instant Approval' : `${activeIndex === 1 ? '24' : '48'} Hour Approval`}
-                     </p>
-                   </div>
-
-                   {/* Monthly EMI */}
+                   {/* Monthly EMI - Full Width Below */}
                    <div className={`rounded-xl p-3 text-center ${
                      activeIndex === 0 
                        ? "bg-yellow-50 border-2 border-yellow-400" 
@@ -273,7 +276,7 @@ export default function RankingPage() {
        </div>
 
       {/* Fixed Bottom CTA */}
-      <div className="p-6 pb-12 safe-area-bottom">
+      <div className="p-6 pb-16 safe-area-bottom">
         <motion.div
           key={`cta-${activeIndex}`}
           initial={{ opacity: 0, y: 20 }}

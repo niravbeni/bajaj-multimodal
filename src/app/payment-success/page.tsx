@@ -50,7 +50,7 @@ export default function PaymentSuccessPage() {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#012953' }}>
+    <div className="ios-safe-height safe-area-top safe-area-bottom overflow-hidden" style={{ backgroundColor: '#012953' }}>
       {/* Confetti Animation */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50">

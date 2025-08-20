@@ -106,7 +106,7 @@ export default function FaceVerificationPage() {
       </div>
 
       {/* Face Detection Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center -mt-8">
         {/* Face-shaped Oval Frame */}
         <div className="relative">
           <motion.div
