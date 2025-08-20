@@ -15,6 +15,14 @@ export default function VerificationPage() {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [isOtpComplete, setIsOtpComplete] = useState(false);
 
+  // Set theme color for verification page
+  useEffect(() => {
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#012953');
+    }
+  }, []);
+
   // Mock data fallback
   const mockProduct = {
     name: "Samsung Galaxy S24",

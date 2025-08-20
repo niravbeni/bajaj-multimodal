@@ -40,6 +40,19 @@ body {
   min-height: 100dvh;
 }
 
+/* Dynamic theme color updates */
+.screen-blue {
+  --theme-color: #012953;
+}
+
+.screen-green {
+  --theme-color: #075e54;
+}
+
+.screen-black {
+  --theme-color: #000000;
+}
+
 /* iOS viewport fill */
 @supports (-webkit-appearance: none) {
   .screen-blue,

@@ -11,6 +11,12 @@ export default function LoadingComparePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Set theme color for loading page
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#000000');
+    }
+
     // Detect mobile device
     const checkMobile = () => {
       setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));

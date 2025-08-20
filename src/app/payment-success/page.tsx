@@ -34,6 +34,12 @@ export default function PaymentSuccessPage() {
   const activeItem = selectedEMI || currentComparison.items[0]; // Use selected EMI or fallback to first
 
   useEffect(() => {
+    // Set theme color for payment success page
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#012953');
+    }
+
     // Show confetti animation
     setShowConfetti(true);
     const timer = setTimeout(() => setShowConfetti(false), 3000);
@@ -94,7 +100,7 @@ export default function PaymentSuccessPage() {
             damping: 10,
             delay: 0.2
           }}
-          className="mb-4 mt-12"
+          className="mb-4 mt-6"
         >
           <div className="relative">
             <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center shadow-2xl">
@@ -194,7 +200,7 @@ export default function PaymentSuccessPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="w-full max-w-sm mt-auto pb-8 mb-6"
+          className="w-full max-w-sm mt-auto pb-4"
         >
           <Button
             onClick={() => {

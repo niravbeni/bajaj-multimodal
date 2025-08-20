@@ -13,6 +13,14 @@ export default function FaceVerificationPage() {
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  // Set theme color for face verification page
+  useEffect(() => {
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#012953');
+    }
+  }, []);
+
   // Setup front-facing camera
   useEffect(() => {
     let stream: MediaStream;
@@ -90,7 +98,8 @@ export default function FaceVerificationPage() {
   }, [isScanning, router]);
 
   return (
-    <div className="ios-safe-height w-full bg-black relative overflow-hidden safe-area-top safe-area-bottom">
+    <div className="screen-blue">
+      <div className="ios-safe-height w-full bg-black relative overflow-hidden safe-area-bottom">
       {/* Real Camera Background */}
       <div className="absolute inset-0">
         <video 
@@ -162,20 +171,20 @@ export default function FaceVerificationPage() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="bg-green-500/20 backdrop-blur-sm rounded-2xl p-4 border border-green-400/30"
+                className="bg-green-500/20 backdrop-blur-sm rounded-xl p-3 border border-green-400/30 max-w-xs mx-auto"
               >
-                <h2 className="text-green-400 text-lg font-medium mb-2">Verifying...</h2>
-                <p className="text-green-300 text-sm mb-4">Please hold still</p>
+                <h2 className="text-green-400 text-base font-medium mb-1">Verifying...</h2>
+                <p className="text-green-300 text-xs mb-3">Please hold still</p>
                 
                 {/* Progress Bar - Inline */}
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <div className="flex items-center justify-between">
                     <span className="text-green-300 text-xs font-medium">Progress</span>
                     <span className="text-green-400 text-xs font-bold">{progress}%</span>
                   </div>
-                  <div className="w-full bg-green-900/30 rounded-full h-2">
+                  <div className="w-full bg-green-900/30 rounded-full h-1.5">
                     <motion.div 
-                      className="bg-green-400 h-2 rounded-full"
+                      className="bg-green-400 h-1.5 rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${progress}%` }}
                       transition={{ duration: 0.1 }}
@@ -195,6 +204,7 @@ export default function FaceVerificationPage() {
             <p>Keep your face centered and well-lit</p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

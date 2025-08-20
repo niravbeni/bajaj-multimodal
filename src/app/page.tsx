@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFlowStore } from '../../hooks/useFlowStore';
 import { getIntent } from '../../hooks/useIntent';
 import ChatWindow from '@/components/chat/ChatWindow';
@@ -15,6 +15,14 @@ export default function Home() {
   
   const [isTyping, setIsTyping] = useState(false);
   const [bottomSheetHeight, setBottomSheetHeight] = useState(0);
+
+  // Set theme color for chat page
+  useEffect(() => {
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#075e54');
+    }
+  }, []);
 
   const handleSendMessage = async (text: string) => {
     // Add user message

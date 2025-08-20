@@ -13,6 +13,14 @@ export default function RankingPage() {
   const [isDragging, setIsDragging] = useState(false);
   const constraintsRef = useRef(null);
 
+  // Set theme color for ranking page
+  useEffect(() => {
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#012953');
+    }
+  }, []);
+
   // Mock data for development when accessing directly
   const mockProduct = {
     name: "iPhone 15 Pro",
