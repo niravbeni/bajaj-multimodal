@@ -32,7 +32,7 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
       // Simulate detection after a short delay
       const timer = setTimeout(() => {
         setProductDetected({
-          name: 'Samsung Galaxy S24 Ultra',
+          name: 'Samsung Family Hub RF23A9771SR',
           available: true,
           confidence: 89
         });

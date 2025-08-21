@@ -23,13 +23,13 @@ export default function RankingPage() {
 
   // Mock data for development when accessing directly
   const mockProduct = {
-    name: "iPhone 15 Pro",
+    name: "Samsung Family Hub RF23A9771SR",
     confidence: 0.95,
-    description: "Latest iPhone model"
+    description: "Samsung smart refrigerator with Family Hub display"
   };
 
   const mockComparison = {
-    productName: "iPhone 15 Pro",
+    productName: "Samsung Family Hub RF23A9771SR",
     items: [
       { provider: "Bajaj Finserv", apr: 12.5 },
       { provider: "HDFC Bank", apr: 14.8 },
@@ -259,7 +259,7 @@ export default function RankingPage() {
                      }`} />
                      <p className="text-xs font-medium text-gray-600 mb-1">Monthly EMI</p>
                      <p className="text-base font-bold text-gray-900">
-                       ₹{Math.round((50000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
+                       ₹{Math.round((250000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
                      </p>
                    </div>
                  </motion.div>

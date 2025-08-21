@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Smartphone, CreditCard, Calendar, User } from 'lucide-react';
+import { CheckCircle, Refrigerator, CreditCard, Calendar, User } from 'lucide-react';
 import { useFlowStore } from '../../../hooks/useFlowStore';
 
 export default function PaymentSuccessPage() {
@@ -15,13 +15,13 @@ export default function PaymentSuccessPage() {
 
   // Mock data fallback
   const mockProduct = {
-    name: "Samsung Galaxy S24",
+    name: "Samsung Family Hub RF23A9771SR",
     confidence: 0.95,
-    description: "Latest Samsung Galaxy model"
+    description: "Samsung smart refrigerator with Family Hub display"
   };
 
   const mockComparison = {
-    productName: "Samsung Galaxy S24",
+    productName: "Samsung Family Hub RF23A9771SR",
     items: [
       { provider: "Bajaj Finserv", apr: 12.5 },
       { provider: "HDFC Bank", apr: 14.8 },
@@ -154,10 +154,10 @@ export default function PaymentSuccessPage() {
           <div className="space-y-2">
             {/* Product Details */}
             <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
-              <Smartphone className="h-5 w-5 text-blue-600" />
+                              <Refrigerator className="h-5 w-5 text-blue-600" />
               <div className="flex-1">
                 <p className="font-semibold text-gray-900 text-sm">{currentProduct.name}</p>
-                <p className="text-gray-600 text-xs">₹50,000</p>
+                                  <p className="text-gray-600 text-xs">₹2,50,000</p>
               </div>
             </div>
 
@@ -176,7 +176,7 @@ export default function PaymentSuccessPage() {
               <div className="flex-1">
                 <p className="font-semibold text-gray-900 text-sm">Monthly EMI</p>
                 <p className="text-green-600 text-sm font-bold">
-                  ₹{Math.round((50000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
+                  ₹{Math.round((250000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
                 </p>
               </div>
             </div>

@@ -8,6 +8,6 @@ export const MOCK_RATES: RateItem[] = [
 ];
 
 export const MOCK_COMPARISON: Comparison = {
-  productName: 'Smartphone EMI',
+      productName: 'Samsung Refrigerator EMI',
   items: MOCK_RATES
 }; 

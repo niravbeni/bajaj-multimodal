@@ -22,13 +22,13 @@ export default function ComparePage() {
 
   // Mock data for development when accessing directly
   const mockProduct = {
-    name: "iPhone 15 Pro",
+    name: "Samsung Family Hub RF23A9771SR",
     confidence: 0.95,
-    description: "Latest iPhone model"
+    description: "Samsung smart refrigerator with Family Hub display"
   };
 
   const mockComparison = {
-    productName: "iPhone 15 Pro",
+    productName: "Samsung Family Hub RF23A9771SR",
     items: [
       { provider: "Bajaj Finserv", apr: 12.5 },
       { provider: "HDFC Bank", apr: 14.8 },

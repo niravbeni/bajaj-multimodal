@@ -25,13 +25,13 @@ export default function VerificationPage() {
 
   // Mock data fallback
   const mockProduct = {
-    name: "Samsung Galaxy S24",
+    name: "Samsung Family Hub RF23A9771SR",
     confidence: 0.95,
-    description: "Latest Samsung Galaxy model"
+    description: "Samsung smart refrigerator with Family Hub display"
   };
 
   const mockComparison = {
-    productName: "Samsung Galaxy S24",
+    productName: "Samsung Family Hub RF23A9771SR",
     items: [
       { provider: "Bajaj Finserv", apr: 12.5 },
       { provider: "HDFC Bank", apr: 14.8 },
@@ -98,9 +98,9 @@ export default function VerificationPage() {
         </motion.h2>
       </div>
 
-      {/* Phone Mockup Area - Overlapped by Card */}
+      {/* Fridge Mockup Area - Overlapped by Card */}
       <div className="relative w-full h-96 -mt-8">
-        {/* S24 Phone Image - Extended View */}
+        {/* Samsung Family Hub Fridge Image - Extended View */}
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -109,8 +109,8 @@ export default function VerificationPage() {
         >
           <div className="relative w-48 h-80">
             <Image
-              src="/S24.png"
-              alt="Samsung Galaxy S24"
+              src="/fridge.png"
+              alt="Samsung Family Hub RF23A9771SR"
               fill
               className="object-contain object-top"
               priority
@@ -132,7 +132,7 @@ export default function VerificationPage() {
             <CreditCard className="h-4 w-4 text-yellow-900" />
             <div className="text-xs text-yellow-900">
               <p className="font-medium">Cost</p>
-              <p className="font-bold">₹50,000</p>
+              <p className="font-bold">₹2,50,000</p>
             </div>
           </div>
         </motion.div>
