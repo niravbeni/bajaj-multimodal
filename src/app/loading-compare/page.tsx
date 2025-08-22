@@ -41,19 +41,19 @@ export default function LoadingComparePage() {
   useEffect(() => {
     const fallbackTimer = setTimeout(() => {
       router.push('/ranking');
-    }, 21000); // 21 second fallback (longer than 18.38 sec video)
+    }, 17000); // 17 second fallback (longer than 15.48 sec video)
 
     return () => {
       clearTimeout(fallbackTimer);
     };
   }, [router]);
 
-  // Desktop: Wait for same duration as video (18+ seconds) for consistency
+  // Desktop: Wait for same duration as video (15.5+ seconds) for consistency
   useEffect(() => {
     if (!isMobile) {
       const timer = setTimeout(() => {
         router.push('/ranking');
-      }, 19000); // 19 seconds to match video timing (18.38s + buffer)
+      }, 16000); // 16 seconds to match video timing (15.48s + buffer)
 
       return () => {
         clearTimeout(timer);

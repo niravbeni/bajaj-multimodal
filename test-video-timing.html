@@ -34,10 +34,10 @@
     <h1>🎬 Video Timing Test</h1>
     
     <div class="info">
-        <h3>✅ FIXED: Video Timing Issue</h3>
-        <p><strong>Video Duration:</strong> 18.38 seconds</p>
-        <p><strong>Desktop Timer:</strong> 19 seconds (was 6.5s - FIXED!)</p>
-        <p><strong>Fallback Timer:</strong> 21 seconds (was 8s - FIXED!)</p>
+        <h3>✅ UPDATED: Video Timing for Latest Video</h3>
+        <p><strong>Video Duration:</strong> 15.48 seconds</p>
+        <p><strong>Desktop Timer:</strong> 16 seconds (updated for latest video)</p>
+        <p><strong>Fallback Timer:</strong> 17 seconds (updated for latest video)</p>
         <p><strong>Mobile:</strong> Uses onEnded event (should work properly)</p>
     </div>
     
@@ -57,15 +57,15 @@
     <div class="info">
         <h3>🧪 How to Test:</h3>
         <ol>
-            <li><strong>Desktop:</strong> Visit loading-compare page, wait 19 seconds → should auto-navigate to ranking</li>
-            <li><strong>Mobile:</strong> Video should play for full 18.38 seconds, then navigate on video end</li>
+            <li><strong>Desktop:</strong> Visit loading-compare page, wait 16 seconds → should auto-navigate to ranking</li>
+            <li><strong>Mobile:</strong> Video should play for full 15.48 seconds, then navigate on video end</li>
             <li><strong>Full Flow:</strong> Go to main app → scan product → "Find Best EMI" → video should play completely</li>
         </ol>
     </div>
     
     <div class="info">
         <h3>⏱️ Expected Behavior:</h3>
-        <p>✅ Video plays for <strong>full duration</strong> (~18 seconds)</p>
+        <p>✅ Video plays for <strong>full duration</strong> (~15.5 seconds)</p>
         <p>✅ No premature navigation to ranking page</p>
         <p>✅ Smooth transition after video completion</p>
         <p>❌ <strike>Old: Navigation after 6.5 seconds (too early!)</strike></p>
@@ -73,10 +73,10 @@
 
     <script>
         // Add some timing info
-        console.log('🎬 Video Timing Fix Applied!');
-        console.log('📊 Desktop Timer: 19 seconds (was 6.5s)');
-        console.log('🔒 Fallback Timer: 21 seconds (was 8s)');
-        console.log('📱 Mobile: onEnded event (18.38s video duration)');
+        console.log('🎬 Video Timing Updated for Latest Video!');
+        console.log('📊 Desktop Timer: 16 seconds (updated for latest video)');
+        console.log('🔒 Fallback Timer: 17 seconds (updated for latest video)');
+        console.log('📱 Mobile: onEnded event (15.48s video duration)');
     </script>
 </body>
 </html> 
