@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import { Send } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -22,70 +21,59 @@ export default function Composer({ onSendMessage, disabled = false, isTyping = f
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
-    <div className="safe-area-bottom bg-transparent">
-      <div className="px-3 py-2 bg-transparent">
-        <form onSubmit={handleSubmit} className="flex items-center gap-3 w-full max-w-none">
-          {/* Input Container */}
-          <div className="flex-1 relative min-w-0">
-            <div className="relative flex items-center bg-white rounded-3xl border border-gray-200 shadow-sm">
-              <Textarea
-                value={message}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
-                placeholder="Type a message"
-                disabled={disabled}
-                rows={1}
-                className={cn(
-                  "flex-1 border-0 bg-transparent text-black text-lg py-3 px-4 rounded-3xl",
-                  "placeholder:text-gray-500",
-                  "focus-visible:ring-0 focus-visible:ring-offset-0",
-                  "resize-none min-h-[52px] max-h-24 overflow-hidden"
-                )}
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="sentences"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    if (message.trim() && !disabled) {
-                      const syntheticEvent = {
-                        preventDefault: () => {},
-                      } as React.FormEvent<HTMLFormElement>;
-                      handleSubmit(syntheticEvent);
-                    }
-                  }
-                }}
-                style={{
-                  height: 'auto',
-                  minHeight: '52px',
-                  maxHeight: '96px'
-                }}
-                onInput={(e) => {
-                  const target = e.target as HTMLTextAreaElement;
-                  target.style.height = 'auto';
-                  target.style.height = Math.min(target.scrollHeight, 96) + 'px';
-                }}
-              />
-              
-
-            </div>
-          </div>
-
-          {/* Send Button */}
-          <Button 
-            type="submit" 
-            disabled={disabled || !message.trim()}
+    <div className="border-t border-gray-200 bg-white px-4 py-4">
+      <form onSubmit={handleSubmit} className="flex items-center gap-3 max-w-4xl mx-auto">        
+        {/* Input Container */}
+        <div className="flex-1 relative">
+          <input
+            type="text"
+            value={message}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder={isTyping ? "AI is typing..." : "Type your message..."}
+            disabled={disabled}
             className={cn(
-              "w-12 h-12 rounded-full flex-shrink-0 transition-all duration-200",
-              "bg-[#075e54] hover:bg-[#064e44] border-0",
-              "disabled:opacity-30 disabled:cursor-not-allowed",
-              "flex items-center justify-center"
+              "h-10 w-full resize-none border border-gray-300 rounded-2xl px-4 py-0",
+              "placeholder:text-gray-500 text-gray-900 text-sm",
+              "focus:border-[#012953] focus:ring-[#012953] focus:ring-1 focus:outline-none",
+              "disabled:bg-gray-50 disabled:text-gray-400"
             )}
-          >
-            <Send className="h-5 w-5 text-white fill-current" />
-          </Button>
-        </form>
-      </div>
+          />
+
+        </div>
+        
+        {/* Send Button */}
+                <Button
+          type="submit"
+          disabled={!message.trim() || disabled}
+          className={cn(
+            "flex-shrink-0 w-10 h-10 rounded-full p-0",
+            "disabled:bg-gray-300",
+            "transition-all duration-200"
+          )}
+          style={!disabled && message.trim() ? { backgroundColor: '#012953' } : {}}
+          onMouseEnter={(e) => {
+            if (!disabled && message.trim()) {
+              e.currentTarget.style.backgroundColor = '#013e75';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (!disabled && message.trim()) {
+              e.currentTarget.style.backgroundColor = '#012953';
+            }
+          }}
+        >
+          <Send className="w-4 h-4" />
+                </Button>
+      </form>
     </div>
   );
 } 

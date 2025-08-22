@@ -111,7 +111,7 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
             : 'absolute bottom-0 left-0 right-0'
         }`}
         style={{
-          backgroundColor: dragState === 'borderless' ? 'transparent' : '#075e54',
+          backgroundColor: dragState === 'borderless' ? 'transparent' : '#012953',
           borderTopLeftRadius: dragState === 'fullscreen' || dragState === 'borderless' ? 0 : 32,
           borderTopRightRadius: dragState === 'fullscreen' || dragState === 'borderless' ? 0 : 32,
           y: dragState === 'borderless' ? 0 : y,
@@ -121,7 +121,7 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
         initial={{ y: dragState === 'borderless' ? 0 : currentHeight }}
         animate={{ 
           y: 0,
-          backgroundColor: dragState === 'borderless' ? 'transparent' : '#075e54',
+          backgroundColor: dragState === 'borderless' ? 'transparent' : '#012953',
           borderTopLeftRadius: dragState === 'fullscreen' || dragState === 'borderless' ? 0 : 32,
           borderTopRightRadius: dragState === 'fullscreen' || dragState === 'borderless' ? 0 : 32
         }}
@@ -149,7 +149,7 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
           <div className="pt-8 pb-6 flex justify-center items-center relative cursor-grab active:cursor-grabbing">
           <motion.div 
             className="w-[52px] h-[5px] rounded-full"
-            style={{ backgroundColor: '#128c7e' }}
+            style={{ backgroundColor: 'white' }}
             initial={{ opacity: 0, y: -10 }}
             animate={{ 
               opacity: 1,
@@ -167,12 +167,12 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
             <motion.div
               className="w-full h-full rounded-full"
               animate={{
-                backgroundColor: ['#128c7e', '#25d366', '#128c7e'],
+                backgroundColor: ['white', '#f0f0f0', 'white'],
                 scale: [1, 1.08, 1],
                 boxShadow: [
-                  '0 0 0 rgba(18, 140, 126, 0)',
-                  '0 0 8px rgba(18, 140, 126, 0.6)',
-                  '0 0 0 rgba(18, 140, 126, 0)'
+                  '0 0 0 rgba(255, 255, 255, 0)',
+                  '0 0 8px rgba(255, 255, 255, 0.6)',
+                  '0 0 0 rgba(255, 255, 255, 0)'
                 ]
               }}
               transition={{
@@ -252,10 +252,10 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
               className="mb-4 p-4 rounded-2xl backdrop-blur-md border"
               style={{
                 backgroundColor: productDetected.available 
-                  ? 'rgba(16, 185, 129, 0.15)' 
+                  ? 'rgba(1, 41, 83, 0.15)' 
                   : 'rgba(239, 68, 68, 0.15)',
                 borderColor: productDetected.available 
-                  ? 'rgba(16, 185, 129, 0.3)' 
+                  ? 'rgba(1, 41, 83, 0.3)' 
                   : 'rgba(239, 68, 68, 0.3)'
               }}
               initial={{ scale: 0.95, opacity: 0 }}
@@ -269,7 +269,7 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
               <div className="flex items-start gap-3">
                 <div 
                   className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                    productDetected.available ? 'bg-green-400' : 'bg-red-400'
+                    productDetected.available ? 'bg-blue-400' : 'bg-red-400'
                   }`}
                 ></div>
                 <div className="flex-1">
@@ -277,7 +277,7 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
                     This is a {productDetected.name}
                   </h3>
                   <p className={`text-sm ${
-                    productDetected.available ? 'text-green-300' : 'text-red-300'
+                    productDetected.available ? 'text-blue-300' : 'text-red-300'
                   }`}>
                     {productDetected.available 
                       ? 'Available for purchase with EMI options'
@@ -313,7 +313,10 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
                       // Dummy action - just show alert for now
                       alert('Purchase feature coming soon!');
                     }}
-                    className="flex-1 h-12 text-xs font-semibold rounded-2xl cursor-pointer hover:cursor-pointer bg-[#075e54] text-white hover:bg-[#128c7e] p-4"
+                    className="flex-1 h-12 text-xs font-semibold rounded-2xl cursor-pointer hover:cursor-pointer text-white p-4"
+                    style={{ backgroundColor: '#012953' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#013e75'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#012953'}
                   >
                     Purchase
                   </Button>
@@ -349,7 +352,10 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
                         router.push('/loading-compare');
                       }, 200);
                     }}
-                    className="flex-1 h-12 text-xs font-semibold rounded-2xl cursor-pointer hover:cursor-pointer bg-[#075e54] text-white hover:bg-[#128c7e] p-4"
+                    className="flex-1 h-12 text-xs font-semibold rounded-2xl cursor-pointer hover:cursor-pointer text-white p-4"
+                    style={{ backgroundColor: '#012953' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#013e75'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#012953'}
                   >
                     Find Best EMI
                   </Button>
@@ -362,7 +368,10 @@ export default function BottomSheetScan({ open, onOpenChange, onHeightChange }: 
                       // Dummy action - just show alert for now
                       alert('More info feature coming soon!');
                     }}
-                    className="flex-1 h-12 text-xs font-semibold rounded-2xl cursor-pointer hover:cursor-pointer bg-[#075e54] text-white hover:bg-[#128c7e] p-4"
+                    className="flex-1 h-12 text-xs font-semibold rounded-2xl cursor-pointer hover:cursor-pointer text-white p-4"
+                    style={{ backgroundColor: '#012953' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#013e75'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#012953'}
                   >
                     More Info
                   </Button>

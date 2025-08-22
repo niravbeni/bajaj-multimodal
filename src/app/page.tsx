@@ -4,6 +4,7 @@ import { useFlowStore } from '../../hooks/useFlowStore';
 import { getIntent } from '../../hooks/useIntent';
 import ChatWindow from '@/components/chat/ChatWindow';
 import BottomSheetScan from '@/components/scan/BottomSheetScan';
+import { Sparkles, Settings } from 'lucide-react';
 
 export default function Home() {
   const { 
@@ -16,11 +17,11 @@ export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
   const [bottomSheetHeight, setBottomSheetHeight] = useState(0);
 
-  // Set theme color for chat page
+  // Set theme color for chat page to blue
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', '#075e54');
+      metaThemeColor.setAttribute('content', '#012953');
     }
   }, []);
 
@@ -48,60 +49,55 @@ export default function Home() {
       const data = await response.json();
       console.log('API Response:', data);
       
-      // Add a small delay for better UX
-      setTimeout(() => {
-        addMessage({ role: 'assistant', text: data.response });
-        setIsTyping(false);
-        
-        // Open camera AFTER bot response is shown
-        if (intent === 'open_scan') {
-          setTimeout(() => {
-            setBottomSheetOpen(true);
-          }, 300); // Small delay to ensure message is rendered
-        }
-      }, 500);
-    } catch (error) {
-      console.error('Chat API Error:', error);
+      // Add AI response
       addMessage({ 
         role: 'assistant', 
-        text: 'Sorry, I encountered an error. Please try again.' 
+        text: data.content || data.message || 'I understand you want to explore EMI options. Let me help you scan and compare products!'
       });
-      setIsTyping(false);
+
+             // Check if should open product scan
+       if (intent === 'open_scan' || 
+           text.toLowerCase().includes('scan') || 
+           text.toLowerCase().includes('product') ||
+           text.toLowerCase().includes('camera')) {
+         setTimeout(() => {
+           setBottomSheetOpen(true);
+         }, 300);
+       }
+    } catch (error) {
+      console.error('Chat API Error:', error);
       
-      // Open camera even on error if intent was to scan
-      if (intent === 'open_scan') {
+      // Fallback response
+      addMessage({
+        role: 'assistant',
+        text: "I'd love to help you find the best EMI options! Try scanning a product with your camera to get started."
+      });
+      
+             if (intent === 'open_scan') {
         setTimeout(() => {
           setBottomSheetOpen(true);
         }, 300);
       }
     }
+    setIsTyping(false);
   };
 
   return (
-    <div className="screen-green">
-      <div className="ios-safe-height flex flex-col overflow-hidden" style={{ backgroundColor: '#e5ddd5' }}>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <div className="ios-safe-height flex flex-col h-screen max-w-4xl mx-auto">
       
-      {/* WhatsApp-style Header */}
-      <header className="px-4 py-3 pt-6 flex items-center gap-3" style={{ backgroundColor: '#075e54' }}>
-        <div className="w-10 h-10 rounded-full bg-[#075e54] flex items-center justify-center">
-          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
-            <path d="M19 15L20.09 18.26L23 19L20.09 19.74L19 23L17.91 19.74L15 19L17.91 18.26L19 15Z" />
-            <path d="M5 15L6.09 18.26L9 19L6.09 19.74L5 23L3.91 19.74L1 19L3.91 18.26L5 15Z" />
-          </svg>
-        </div>
+      {/* Modern AI Assistant Header */}
+      <header className="px-6 py-4 flex items-center gap-4" style={{ backgroundColor: '#012953' }}>
+        <Sparkles className="w-6 h-6 text-white" />
         <div className="flex-1">
-          <h1 className="text-white font-medium text-lg">AI Assistant</h1>
-          <p className="text-gray-400 text-sm">Online</p>
+          <h1 className="text-white font-semibold text-xl">AI Assistant</h1>
         </div>
-        <button className="w-6 h-6 text-gray-400">
-          <svg fill="currentColor" viewBox="0 0 24 24" className="w-full h-full">
-            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-          </svg>
+        <button className="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors">
+          <Settings className="w-5 h-5 text-white" />
         </button>
       </header>
       
-      <main className="flex-1 overflow-hidden safe-area-bottom">
+      <main className="flex-1 overflow-hidden">
         <ChatWindow 
           messages={messages} 
           onSendMessage={handleSendMessage} 

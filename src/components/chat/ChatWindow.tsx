@@ -29,20 +29,14 @@ export default function ChatWindow({ messages, onSendMessage, disabled, isTyping
   }, [messages, isTyping, bottomSheetHeight]);
 
   return (
-    <div className="flex flex-col h-full relative overflow-hidden" style={{ backgroundColor: '#e5ddd5' }}>
-      {/* Background Image - Mobile Only */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 md:hidden"
-        style={{ backgroundImage: 'url(/bg.png)' }}
-      />
-      
+    <div className="flex flex-col h-full bg-gray-50">
       <div 
         ref={scrollRef}
-        className="flex-1 overflow-y-auto overflow-x-hidden py-4 -webkit-overflow-scrolling-touch relative z-10"
+        className="flex-1 overflow-y-auto overflow-x-hidden py-6 px-4 space-y-4"
         style={{ 
           scrollbarWidth: 'none', 
           msOverflowStyle: 'none',
-          paddingBottom: `max(16px, env(safe-area-inset-bottom))`
+          paddingBottom: `max(24px, env(safe-area-inset-bottom))`
         }}
       >
         <style jsx>{`
@@ -50,15 +44,42 @@ export default function ChatWindow({ messages, onSendMessage, disabled, isTyping
             display: none;
           }
         `}</style>
-        {messages.map((message) => (
-          <MessageBubble key={message.id} message={message} />
+        
+        {/* Welcome message if no messages */}
+        {messages.length === 0 && (
+          <div className="text-center py-8">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#012953' }}>
+              <span className="text-2xl">🤖</span>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Welcome to EMI Assistant</h3>
+            <p className="text-gray-600 max-w-sm mx-auto">
+              I&apos;ll help you find the best EMI deals for your products. Start by telling me what you&apos;re looking for!
+            </p>
+          </div>
+        )}
+        
+        {messages.map((message, index) => (
+          <MessageBubble key={index} message={message} />
         ))}
-        {/* Extra bottom padding for iOS */}
-        <div className="h-20" />
+        
+        {isTyping && (
+          <div className="flex justify-start px-4">
+            <div className="bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-200">
+              <div className="flex space-x-1">
+                <div className="w-2 h-2 rounded-full animate-bounce" style={{ backgroundColor: '#012953' }}></div>
+                <div className="w-2 h-2 rounded-full animate-bounce" style={{ backgroundColor: '#012953', animationDelay: '0.1s' }}></div>
+                <div className="w-2 h-2 rounded-full animate-bounce" style={{ backgroundColor: '#012953', animationDelay: '0.2s' }}></div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="relative z-10 safe-area-bottom">
-        <Composer onSendMessage={onSendMessage} disabled={disabled} isTyping={isTyping} />
-      </div>
+      
+      <Composer 
+        onSendMessage={onSendMessage} 
+        disabled={disabled || isTyping} 
+        isTyping={isTyping}
+      />
     </div>
   );
 } 
