@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useFlowStore } from '../../hooks/useFlowStore';
 import { getIntent } from '../../hooks/useIntent';
 import ChatWindow from '@/components/chat/ChatWindow';
-import Composer from '@/components/chat/Composer';
 import BottomSheetScan from '@/components/scan/BottomSheetScan';
 import { Sparkles, Settings } from 'lucide-react';
 
@@ -85,7 +84,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      <div className="ios-safe-height flex flex-col h-screen max-w-4xl mx-auto">
+      <div className="ios-safe-height flex flex-col h-screen w-full">
       
       {/* Modern AI Assistant Header */}
       <header className="px-6 py-4 flex items-center gap-4" style={{ backgroundColor: '#012953' }}>
@@ -98,22 +97,73 @@ export default function Home() {
         </button>
       </header>
       
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1 overflow-hidden flex flex-col">
         <ChatWindow 
           messages={messages} 
           isTyping={isTyping}
           bottomSheetHeight={bottomSheetHeight}
         />
+        
+        {/* Sticky Composer at Bottom */}
+        <div className="flex-shrink-0 border-t border-gray-200 bg-white px-4 py-4" style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target as HTMLFormElement);
+            const message = formData.get('message') as string;
+            if (message.trim()) {
+              handleSendMessage(message.trim());
+              (e.target as HTMLFormElement).reset();
+            }
+          }} className="flex items-center gap-3 w-full max-w-none">        
+            {/* Input Container */}
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                name="message"
+                placeholder={isTyping ? "AI is typing..." : "Type your message..."}
+                disabled={isTyping}
+                className="h-10 w-full resize-none border border-gray-300 rounded-2xl px-4 py-0 placeholder:text-gray-500 text-gray-900 text-sm focus:border-[#012953] focus:ring-[#012953] focus:ring-1 focus:outline-none disabled:bg-gray-50 disabled:text-gray-400"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    const form = e.currentTarget.form;
+                    if (form) {
+                      const formData = new FormData(form);
+                      const message = formData.get('message') as string;
+                      if (message.trim()) {
+                        handleSendMessage(message.trim());
+                        form.reset();
+                      }
+                    }
+                  }
+                }}
+              />
+            </div>
+            
+            {/* Send Button */}
+            <button
+              type="submit"
+              disabled={isTyping}
+              className="flex-shrink-0 w-10 h-10 rounded-full p-0 disabled:bg-gray-300 transition-all duration-200 flex items-center justify-center"
+              style={{ backgroundColor: '#012953' }}
+              onMouseEnter={(e) => {
+                if (!isTyping) {
+                  e.currentTarget.style.backgroundColor = '#013e75';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isTyping) {
+                  e.currentTarget.style.backgroundColor = '#012953';
+                }
+              }}
+            >
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </form>
+        </div>
       </main>
-
-      {/* Fixed Message Input at Bottom */}
-      <div className="flex-shrink-0">
-        <Composer 
-          onSendMessage={handleSendMessage} 
-          disabled={false} 
-          isTyping={isTyping}
-        />
-      </div>
 
       <BottomSheetScan 
         open={isBottomSheetOpen} 
