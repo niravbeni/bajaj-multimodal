@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useFlowStore } from '../../hooks/useFlowStore';
 import { getIntent } from '../../hooks/useIntent';
 import ChatWindow from '@/components/chat/ChatWindow';
+import Composer from '@/components/chat/Composer';
 import BottomSheetScan from '@/components/scan/BottomSheetScan';
 import { Sparkles, Settings } from 'lucide-react';
 
@@ -100,11 +101,19 @@ export default function Home() {
       <main className="flex-1 overflow-hidden">
         <ChatWindow 
           messages={messages} 
-          onSendMessage={handleSendMessage} 
           isTyping={isTyping}
           bottomSheetHeight={bottomSheetHeight}
         />
       </main>
+
+      {/* Fixed Message Input at Bottom */}
+      <div className="flex-shrink-0">
+        <Composer 
+          onSendMessage={handleSendMessage} 
+          disabled={false} 
+          isTyping={isTyping}
+        />
+      </div>
 
       <BottomSheetScan 
         open={isBottomSheetOpen} 
