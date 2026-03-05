@@ -1,10 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useFlowStore } from '../../hooks/useFlowStore';
-import { getIntent } from '../../hooks/useIntent';
 import ChatWindow from '@/components/chat/ChatWindow';
 import BottomSheetScan from '@/components/scan/BottomSheetScan';
-import { Sparkles, Settings } from 'lucide-react';
+import { Sparkles, Settings, Send } from 'lucide-react';
 
 export default function Home() {
   const { 
@@ -29,9 +28,6 @@ export default function Home() {
     // Add user message
     addMessage({ role: 'user', text });
 
-    // Check intent
-    const intent = getIntent(text);
-
     // Get AI response from API
     setIsTyping(true);
     try {
@@ -54,16 +50,6 @@ export default function Home() {
         role: 'assistant', 
         text: data.content || data.message || 'I understand you want to explore EMI options. Let me help you scan and compare products!'
       });
-
-             // Check if should open product scan
-       if (intent === 'open_scan' || 
-           text.toLowerCase().includes('scan') || 
-           text.toLowerCase().includes('product') ||
-           text.toLowerCase().includes('camera')) {
-         setTimeout(() => {
-           setBottomSheetOpen(true);
-         }, 300);
-       }
     } catch (error) {
       console.error('Chat API Error:', error);
       
@@ -72,13 +58,11 @@ export default function Home() {
         role: 'assistant',
         text: "I'd love to help you find the best EMI options! Try scanning a product with your camera to get started."
       });
-      
-             if (intent === 'open_scan') {
-        setTimeout(() => {
-          setBottomSheetOpen(true);
-        }, 300);
-      }
     }
+    // Always open camera after sending
+    setTimeout(() => {
+      setBottomSheetOpen(true);
+    }, 300);
     setIsTyping(false);
   };
 
@@ -157,9 +141,7 @@ export default function Home() {
                 }
               }}
             >
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
+              <Send className="w-4 h-4 text-white" />
             </button>
           </form>
         </div>
