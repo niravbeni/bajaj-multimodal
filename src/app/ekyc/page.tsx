@@ -14,7 +14,10 @@ export default function EKYCPage() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate progress animation
+    document.documentElement.style.backgroundColor = '#000000';
+  }, []);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       setProgress(prev => {
         if (prev >= 70) {
@@ -29,7 +32,7 @@ export default function EKYCPage() {
   }, []);
 
   return (
-    <div className="h-screen bg-black flex flex-col safe-area-top safe-area-bottom">
+    <div className="h-screen bg-black flex flex-col overflow-hidden safe-area-top safe-area-bottom">
       <header className="absolute top-0 left-0 right-0 z-20 p-4 flex items-center justify-between safe-area-top">
                 <Button 
           variant="ghost" 

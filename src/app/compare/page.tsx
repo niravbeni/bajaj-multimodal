@@ -13,7 +13,7 @@ export default function ComparePage() {
   const [showCTA, setShowCTA] = useState(false);
 
   useEffect(() => {
-    // Show CTA after animation completes
+    document.documentElement.style.backgroundColor = '#f8fafc';
     const timer = setTimeout(() => {
       setShowCTA(true);
     }, 2000);
@@ -52,8 +52,8 @@ export default function ComparePage() {
   );
 
   return (
-    <div className="min-h-screen bg-background safe-area-top safe-area-bottom">
-      <header className="p-4 border-b flex items-center bg-background/95 backdrop-blur-sm sticky top-0 z-10 safe-area-top">
+    <div className="h-screen overflow-hidden flex flex-col bg-background safe-area-top safe-area-bottom">
+      <header className="flex-shrink-0 p-4 border-b flex items-center bg-background/95 backdrop-blur-sm z-10 safe-area-top">
                 <Button 
           variant="ghost" 
           size="icon" 
@@ -65,7 +65,7 @@ export default function ComparePage() {
         <h1 className="ml-4 text-xl font-semibold">Rate Comparison</h1>
       </header>
 
-      <main className="p-6">
+      <main className="flex-1 overflow-y-auto p-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

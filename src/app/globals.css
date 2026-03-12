@@ -4,16 +4,15 @@
 /* iOS Safari viewport fixes */
 html {
   height: 100%;
-  /* Prevent zoom on input focus */
+  overflow: hidden;
   -webkit-text-size-adjust: 100%;
+  background-color: #012953;
 }
 
 body {
   height: 100%;
-  /* Prevent scroll bouncing */
+  overflow: hidden;
   overscroll-behavior: none;
-  /* Prevent horizontal scroll */
-  overflow-x: hidden;
 }
 
 /* iOS safe area support */
@@ -21,23 +20,26 @@ body {
   padding-top: env(safe-area-inset-top);
 }
 
-/* iOS status bar styling - extend background to full viewport */
+/* Full-viewport screen backgrounds */
 .screen-blue {
   background: #012953;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .screen-green {
   background: #075e54;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .screen-black {
   background: #000000;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 /* Dynamic theme color updates */
@@ -53,12 +55,11 @@ body {
   --theme-color: #000000;
 }
 
-/* iOS viewport fill */
 @supports (-webkit-appearance: none) {
   .screen-blue,
   .screen-green,
   .screen-black {
-    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
   }
 }
 

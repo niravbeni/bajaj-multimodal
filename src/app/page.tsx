@@ -16,12 +16,12 @@ export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
   const [bottomSheetHeight, setBottomSheetHeight] = useState(0);
 
-  // Set theme color for chat page to blue
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', '#012953');
     }
+    document.documentElement.style.backgroundColor = '#012953';
   }, []);
 
   const handleSendMessage = async (text: string) => {
@@ -67,8 +67,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      <div className="ios-safe-height flex flex-col h-screen w-full">
+    <div className="h-screen bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+      <div className="ios-safe-height flex flex-col w-full">
       
       {/* Modern AI Assistant Header */}
       <header className="px-6 py-4 flex items-center gap-4" style={{ backgroundColor: '#012953' }}>

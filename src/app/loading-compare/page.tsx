@@ -12,11 +12,11 @@ export default function LoadingComparePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Set theme color for loading page
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', '#000000');
     }
+    document.documentElement.style.backgroundColor = '#000000';
 
     // Detect mobile device
     const checkMobile = () => {
@@ -95,7 +95,7 @@ export default function LoadingComparePage() {
 
   // Desktop: Simple spinner with video-inspired colors
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center safe-area-top safe-area-bottom">
+    <div className="h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center safe-area-top safe-area-bottom">
       <div className="text-center px-6">
         {/* Spinner inspired by video colors */}
         <motion.div

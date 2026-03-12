@@ -13,12 +13,12 @@ export default function FaceVerificationPage() {
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  // Set theme color for face verification page
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', '#012953');
     }
+    document.documentElement.style.backgroundColor = '#012953';
   }, []);
 
   // Setup front-facing camera

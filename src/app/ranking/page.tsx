@@ -13,12 +13,12 @@ export default function RankingPage() {
   const [isDragging, setIsDragging] = useState(false);
   const constraintsRef = useRef(null);
 
-  // Set theme color for ranking page
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', '#012953');
     }
+    document.documentElement.style.backgroundColor = '#012953';
   }, []);
 
   // Mock data for development when accessing directly
@@ -286,7 +286,7 @@ export default function RankingPage() {
        </div>
 
       {/* Fixed Bottom CTA */}
-      <div className="p-6 pb-8 mb-8 safe-area-bottom">
+      <div className="px-6 pb-6 flex-shrink-0">
         <motion.div
           key={`cta-${activeIndex}`}
           initial={{ opacity: 0, y: 20 }}

@@ -34,13 +34,12 @@ export default function PaymentSuccessPage() {
   const activeItem = selectedEMI || currentComparison.items[0]; // Use selected EMI or fallback to first
 
   useEffect(() => {
-    // Set theme color for payment success page
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', '#012953');
     }
+    document.documentElement.style.backgroundColor = '#012953';
 
-    // Show confetti animation
     setShowConfetti(true);
     const timer = setTimeout(() => setShowConfetti(false), 3000);
     
@@ -57,7 +56,7 @@ export default function PaymentSuccessPage() {
 
   return (
     <div className="screen-blue">
-      <div className="ios-safe-height overflow-hidden">
+      <div className="ios-safe-height flex flex-col overflow-hidden">
       
       {/* Confetti Animation */}
       {showConfetti && (
@@ -89,8 +88,8 @@ export default function PaymentSuccessPage() {
         </div>
       )}
 
-      <div className="ios-safe-height flex flex-col items-center p-6 relative overflow-hidden safe-area-bottom">
-        {/* Success Icon - Moved down */}
+      <div className="flex-1 flex flex-col items-center px-6 pt-4 pb-6 relative overflow-hidden">
+        {/* Success Icon */}
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -100,14 +99,13 @@ export default function PaymentSuccessPage() {
             damping: 10,
             delay: 0.2
           }}
-          className="mb-4 mt-6"
+          className="mb-3 mt-4"
         >
           <div className="relative">
-            <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center shadow-2xl">
-              <CheckCircle className="h-12 w-12 text-white" />
+            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center shadow-2xl">
+              <CheckCircle className="h-10 w-10 text-white" />
             </div>
             
-            {/* Success Ring Animation */}
             <motion.div
               initial={{ scale: 1, opacity: 0.2 }}
               animate={{ 
@@ -129,22 +127,22 @@ export default function PaymentSuccessPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="text-center mb-8"
+          className="text-center mb-5"
         >
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-2xl font-bold text-white mb-1">
             Payment Successful!
           </h1>
-          <p className="text-blue-200 text-lg">
+          <p className="text-blue-200 text-base">
             Your EMI application has been approved
           </p>
         </motion.div>
 
-        {/* Transaction Details Card - Made smaller */}
+        {/* Transaction Details Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="bg-white rounded-3xl p-3 w-full max-w-xs shadow-2xl mb-6"
+          className="bg-white rounded-3xl p-3 w-full max-w-xs shadow-2xl"
         >
           <div className="text-center mb-3">
             <h2 className="text-base font-bold text-gray-900 mb-1">Transaction Details</h2>
@@ -152,16 +150,14 @@ export default function PaymentSuccessPage() {
           </div>
 
           <div className="space-y-2">
-            {/* Product Details */}
             <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
-                              <Refrigerator className="h-5 w-5 text-blue-600" />
+              <Refrigerator className="h-5 w-5 text-blue-600" />
               <div className="flex-1">
                 <p className="font-semibold text-gray-900 text-sm">{currentProduct.name}</p>
-                                  <p className="text-gray-600 text-xs">₹2,50,000</p>
+                <p className="text-gray-600 text-xs">₹2,50,000</p>
               </div>
             </div>
 
-            {/* EMI Provider */}
             <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
               <CreditCard className="h-5 w-5 text-green-600" />
               <div className="flex-1">
@@ -170,7 +166,6 @@ export default function PaymentSuccessPage() {
               </div>
             </div>
 
-            {/* EMI Amount */}
             <div className="flex items-center gap-2 p-2 bg-green-50 rounded-lg border border-green-200">
               <Calendar className="h-5 w-5 text-green-600" />
               <div className="flex-1">
@@ -180,27 +175,24 @@ export default function PaymentSuccessPage() {
                 </p>
               </div>
             </div>
-
-
           </div>
 
-          {/* Success Badge */}
-          <div className="mt-4 text-center">
+          <div className="mt-3 text-center">
             <div className="bg-green-100 border border-green-300 rounded-full px-4 py-1 inline-block">
               <p className="text-green-800 font-semibold text-xs">✓ EMI Approved & Activated</p>
             </div>
           </div>
         </motion.div>
 
-        {/* Spacer to push button to bottom */}
-        <div className="flex-1"></div>
+        {/* Spacer */}
+        <div className="flex-1 min-h-4"></div>
 
-        {/* Action Button - Fixed at Bottom */}
+        {/* Action Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="w-full max-w-sm mt-auto pb-4"
+          className="w-full max-w-sm flex-shrink-0"
         >
           <Button
             onClick={() => {
