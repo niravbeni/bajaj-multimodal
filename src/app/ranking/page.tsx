@@ -157,26 +157,26 @@ export default function RankingPage() {
             }}
                      >
              {/* Full Screen EMI Card */}
-             <div className={`h-full bg-white rounded-3xl shadow-2xl relative overflow-hidden border-8 ${getBorderColor(activeIndex)}`}>
+             <div className={`h-full bg-white rounded-3xl shadow-2xl relative overflow-hidden border-4 ${getBorderColor(activeIndex)}`}>
                {/* Corner Badge */}
-               <div className="absolute top-6 right-6 z-10">
-                 <div className={`w-12 h-12 rounded-full flex items-center justify-center ${getBadgeColor(activeIndex)} shadow-lg`}>
+               <div className="absolute top-4 right-4 z-10">
+                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${getBadgeColor(activeIndex)} shadow-lg`}>
                    {activeIndex === 0 ? (
-                     <Crown className="h-6 w-6" />
+                     <Crown className="h-5 w-5" />
                    ) : (
-                     <span className="font-bold text-lg">{activeIndex + 1}</span>
+                     <span className="font-bold text-base">{activeIndex + 1}</span>
                    )}
                  </div>
                </div>
 
                {/* Card Content */}
-               <div className="h-full flex flex-col p-3 pb-4 text-center">
+               <div className="h-full flex flex-col p-3 text-center">
                  {/* EMI Provider Name at Top */}
                  <motion.div
                    initial={{ opacity: 0, y: -10 }}
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: 0.1 }}
-                   className={activeIndex === 0 ? "pt-2 pb-2" : "pt-2 pb-4"}
+                   className={activeIndex === 0 ? "pt-1 pb-1" : "pt-1 pb-3"}
                  >
                    <h2 className={activeIndex === 0 ? "text-xl font-bold text-gray-900" : "text-2xl font-bold text-gray-900"}>
                      {activeItem.provider}
@@ -189,7 +189,7 @@ export default function RankingPage() {
                      initial={{ scale: 0.8, opacity: 0 }}
                      animate={{ scale: 1, opacity: 1 }}
                      transition={{ delay: 0.2 }}
-                     className="pb-2"
+                     className="pb-1"
                    >
                      <div className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full border border-yellow-300 font-semibold inline-block">
                        🏆 RECOMMENDED
@@ -202,7 +202,7 @@ export default function RankingPage() {
                    initial={{ scale: 0.8, opacity: 0 }}
                    animate={{ scale: 1, opacity: 1 }}
                    transition={{ delay: 0.3 }}
-                   className={activeIndex === 0 ? "pb-3" : "pb-6"}
+                   className={activeIndex === 0 ? "pb-2" : "pb-4"}
                  >
                    <div className={`font-bold text-gray-900 mb-1 ${activeIndex === 0 ? "text-3xl" : "text-5xl"}`}>
                      {activeItem.apr}%
@@ -215,11 +215,9 @@ export default function RankingPage() {
                    initial={{ y: 20, opacity: 0 }}
                    animate={{ y: 0, opacity: 1 }}
                    transition={{ delay: 0.4 }}
-                   className="flex-1 space-y-2 pb-1"
+                   className="flex-1 flex flex-col justify-end gap-2"
                  >
-                   {/* Processing Fee and Approval Time - Side by Side */}
-                   <div className="grid grid-cols-2 gap-3">
-                     {/* Processing Fee */}
+                   <div className="grid grid-cols-2 gap-2">
                      <div className={`rounded-lg p-2 text-center ${
                        activeIndex === 0 
                          ? "bg-green-50 border border-green-300" 
@@ -233,7 +231,6 @@ export default function RankingPage() {
                        </p>
                      </div>
 
-                     {/* Approval Time */}
                      <div className={`rounded-lg p-2 text-center ${
                        activeIndex === 0 
                          ? "bg-blue-50 border border-blue-300" 
@@ -248,16 +245,16 @@ export default function RankingPage() {
                      </div>
                    </div>
 
-                   {/* Monthly EMI - Full Width Below */}
+                   {/* Monthly EMI */}
                    <div className={`rounded-lg p-2 text-center ${
                      activeIndex === 0 
                        ? "bg-yellow-50 border border-yellow-400" 
                        : "bg-gray-50 border border-gray-200"
                    }`}>
-                     <TrendingUp className={`mx-auto h-4 w-4 mb-1 ${
+                     <TrendingUp className={`mx-auto h-4 w-4 mb-0.5 ${
                        activeIndex === 0 ? 'text-yellow-600' : 'text-gray-500'
                      }`} />
-                     <p className="text-xs font-medium text-gray-600 mb-1">Monthly EMI</p>
+                     <p className="text-xs font-medium text-gray-600">Monthly EMI</p>
                      <p className="text-base font-bold text-gray-900">
                        ₹{Math.round((250000 * (1 + activeItem.apr/100)) / 12).toLocaleString()}
                      </p>
